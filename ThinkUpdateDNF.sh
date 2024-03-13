@@ -2,8 +2,8 @@
 
 ##########################################################################################################################
 # Script: ThinkUpdateDNF
-# Autor: ThinkRoot
-# Versiune: 2.1
+# Autor: ThinkRoot, BuG
+# Versiune: 2.2
 
 # Descriere:
 #   Acest script actualizează fișierul de configurare „dnf.conf” pentru a reflecta setările specificate.
@@ -32,6 +32,7 @@ new_settings=(
     "multilib_policy=all"
     "metadata_timer_sync=0"
     "metadata_expire=-1"
+    "defaultyes=True"
 )
 
 # Definirea calei către fișierul dnf.conf
@@ -57,6 +58,7 @@ if [ -w "$dnf_conf" ]; then
     sed -i '/^multilib_policy=/d' "$dnf_conf"
     sed -i '/^metadata_timer_sync=/d' "$dnf_conf"
     sed -i '/^metadata_expire=/d' "$dnf_conf"
+    sed -i '/^defaultyes=/d' "$dnf_conf"
 
 # Adăugarea noilor informații în fișierul dnf.conf
     for setting in "${new_settings[@]}"; do
