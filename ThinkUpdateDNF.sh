@@ -3,7 +3,7 @@
 ##########################################################################################################################
 # Script: ThinkUpdateDNF
 # Autor: ThinkRoot
-# Versiune: 1.0
+# Versiune: 2
 
 # Descriere:
 #   Acest script actualizează fișierul de configurare „dnf.conf” pentru a reflecta setările specificate.
