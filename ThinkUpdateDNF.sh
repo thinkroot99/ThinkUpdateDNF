@@ -3,7 +3,7 @@
 ##########################################################################################################################
 # Script: ThinkUpdateDNF
 # Autor: ThinkRoot, BuG
-# Versiune: 2.2
+# Versiune: 2.3
 
 # Descriere:
 #   Acest script actualizează fișierul de configurare „dnf.conf” pentru a reflecta setările specificate.
@@ -28,7 +28,6 @@ new_settings=(
     "max_parallel_downloads=20"
     "max_downloads_per_mirror=100"
     "deltarpm=True"
-    "exclude=kernel*"
     "multilib_policy=all"
     "metadata_timer_sync=0"
     "metadata_expire=-1"
@@ -54,7 +53,6 @@ if [ -w "$dnf_conf" ]; then
     sed -i '/^max_parallel_downloads=/d' "$dnf_conf"
     sed -i '/^max_downloads_per_mirror=/d' "$dnf_conf"
     sed -i '/^deltarpm=/d' "$dnf_conf"
-    sed -i '/^exclude=/d' "$dnf_conf"
     sed -i '/^multilib_policy=/d' "$dnf_conf"
     sed -i '/^metadata_timer_sync=/d' "$dnf_conf"
     sed -i '/^metadata_expire=/d' "$dnf_conf"
