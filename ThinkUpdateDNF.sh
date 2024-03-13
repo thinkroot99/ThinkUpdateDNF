@@ -3,7 +3,7 @@
 ##########################################################################################################################
 # Script: ThinkUpdateDNF
 # Autor: ThinkRoot
-# Versiune: 2
+# Versiune: 2.1
 
 # Descriere:
 #   Acest script actualizează fișierul de configurare „dnf.conf” pentru a reflecta setările specificate.
@@ -66,6 +66,4 @@ if [ -w "$dnf_conf" ]; then
     echo "Fișierul dnf.conf a fost actualizat cu noile setări."
 else
     echo "Nu ai permisiuni pentru a modifica fișierul dnf.conf."
-fi
-
 fi
