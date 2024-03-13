@@ -39,20 +39,33 @@ dnf_conf="/etc/dnf/dnf.conf"
 
 # Verificarea existenței fișierului dnf.conf și a permisiunilor de scriere
 if [ -w "$dnf_conf" ]; then
+
 # Salvarea vechiului conținut al fișierului dnf.conf pentru a crea o copie de siguranță
     cp "$dnf_conf" "$dnf_conf.bak"
 
-# Parcurgerea listei cu noile setări și actualizarea fișierului dnf.conf
+# Ștergerea vechilor informații din fișierul dnf.conf
+    sed -i '/^gpgcheck=/d' "$dnf_conf"
+    sed -i '/^installonly_limit=/d' "$dnf_conf"
+    sed -i '/^clean_requirements_on_remove=/d' "$dnf_conf"
+    sed -i '/^best=/d' "$dnf_conf"
+    sed -i '/^skip_if_unavailable=/d' "$dnf_conf"
+    sed -i '/^fastestmirror=/d' "$dnf_conf"
+    sed -i '/^max_parallel_downloads=/d' "$dnf_conf"
+    sed -i '/^max_downloads_per_mirror=/d' "$dnf_conf"
+    sed -i '/^deltarpm=/d' "$dnf_conf"
+    sed -i '/^exclude=/d' "$dnf_conf"
+    sed -i '/^multilib_policy=/d' "$dnf_conf"
+    sed -i '/^metadata_timer_sync=/d' "$dnf_conf"
+    sed -i '/^metadata_expire=/d' "$dnf_conf"
+
+# Adăugarea noilor informații în fișierul dnf.conf
     for setting in "${new_settings[@]}"; do
-        # Verificarea dacă setarea există deja în fișier
-        if grep -q "^$setting" "$dnf_conf"; then
-            sed -i "s/^$setting.*/$setting/" "$dnf_conf"
-        else
-            echo "$setting" >> "$dnf_conf"
-        fi
+        echo "$setting" >> "$dnf_conf"
     done
 
     echo "Fișierul dnf.conf a fost actualizat cu noile setări."
 else
     echo "Nu ai permisiuni pentru a modifica fișierul dnf.conf."
+fi
+
 fi
